@@ -1,7 +1,7 @@
 import mongoose from "mongoose"
 import connectDB from "../../../../helper/dbConnect"
 import Department from "../../../../model/Department"
-export default async function handler(req,res){
+export default async function Handler(req,res){
         
     if(mongoose.connection.readyState===0){
         await connectDB()
