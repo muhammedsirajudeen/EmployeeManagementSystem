@@ -10,7 +10,15 @@ if (mongoose.models && mongoose.models.Employee) {
         EmployeeEmail:String,
         EmployeeContact:Number,
         DateOfJoining:Date,
-        Experience:Number
+        Experience:Number,
+        Department:{
+          type:String,
+          default:"unassigned"
+        },
+        Location:{
+          type:String,
+          default:"unassigned"
+        }
     }
   )
 

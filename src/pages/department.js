@@ -107,8 +107,8 @@ export default function employee(){
                                     <div className="flex-1 p-2">
                                         {department.ManagerId}
                                     </div>
-                                    <button id={department._id } className="flex-1 font-bold" onClick={deleteHandler} >D</button>
-                                    <button id={department._id } className="flex-1 font-bold" onClick={editHandler}  >E</button>
+                                    <button id={department._id } className="flex-1 font-bold" onClick={deleteHandler} >DELETE</button>
+                                    <button id={department._id } className="flex-1 font-bold" onClick={editHandler}  >EDIT</button>
 
                             </div>
 

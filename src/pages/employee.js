@@ -28,6 +28,10 @@ export default function employee(){
     },[])
 
     async function addHandler(){
+        if(date.length===0){
+            alert("please enter date")
+            return
+        }
         let response=await axios.post("/api/employee/createEmployee",
         {
             EmployeeName:name,
@@ -105,8 +109,8 @@ export default function employee(){
                                     <div className="flex-1 p-2">
                                         {employee.Experience}
                                     </div>
-                                    <button id={employee._id } className="flex-1 font-bold" onClick={deleteHandler} >D</button>
-                                    <button id={employee._id } className="flex-1 font-bold" onClick={editHandler}  >E</button>
+                                    <button id={employee._id } className="flex-1 font-bold" onClick={deleteHandler} >DELETE</button>
+                                    <button id={employee._id } className="flex-1 font-bold" onClick={editHandler}  >EDIT</button>
 
                             </div>
 

@@ -7,6 +7,7 @@ export default async function Handler(req,res){
     }
     if(req.method==="POST"){
         const id=req.body.id
+        console.log(id)
         try{
             let docs=await Employee.findById(id)
             if(docs){
