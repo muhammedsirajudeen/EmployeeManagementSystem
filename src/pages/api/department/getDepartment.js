@@ -1,16 +1,20 @@
-import connectDB from "../../../../helper/dbConnect"
 import mongoose from "mongoose"
-import Employee from "../../../../model/Employee"
+import Department from "../../../../model/Department"
 export default async function handler(req,res){
     if(mongoose.connection.readyState===0){
         await connectDB()
     }
     try{
-        let docs=await Employee.find()
-        res.status(200).json({message:"success",employees:docs})
+        let docs=await Department.find()
+        if(docs){
+            res.json({message:"success",department:docs})
+
+        }else{
+            res.json({message:"success",department:[]})
+
+        }
     }catch(error){
         console.log(error)
         res.status(501).json({message:"error"})
     }
-    res.status(200).json({message:"hey"})
 }

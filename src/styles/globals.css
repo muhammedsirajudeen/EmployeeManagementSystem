@@ -4,4 +4,17 @@
 body{
   background-color: black;
   color: white;
+   /* Adjust the blur amount as needed */
+
+
+}
+.employee-main-container{
+  width: 60%;
+}
+.employeesubcontainer{
+  width: 100%;
+}
+
+.blur{
+  filter: blur(10px);
 }
