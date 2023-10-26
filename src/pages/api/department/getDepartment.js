@@ -4,17 +4,20 @@ export default async function handler(req,res){
     if(mongoose.connection.readyState===0){
         await connectDB()
     }
-    try{
-        let docs=await Department.find()
-        if(docs){
-            res.json({message:"success",department:docs})
-
-        }else{
-            res.json({message:"success",department:[]})
-
+    if(req.method==="GET"){
+        try{
+            let docs=await Department.find()
+            if(docs){
+                res.json({message:"success",department:docs})
+    
+            }else{
+                res.json({message:"success",department:[]})
+    
+            }
+        }catch(error){
+            console.log(error)
+            res.status(501).json({message:"error"})
         }
-    }catch(error){
-        console.log(error)
-        res.status(501).json({message:"error"})
+    
     }
 }

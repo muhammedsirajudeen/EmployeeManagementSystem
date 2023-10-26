@@ -5,12 +5,15 @@ export default async function handler(req,res){
     if(mongoose.connection.readyState===0){
         await connectDB()
     }
-    try{
-        let docs=await Employee.find()
-        res.status(200).json({message:"success",employees:docs})
-    }catch(error){
-        console.log(error)
-        res.status(501).json({message:"error"})
+    if(req.method==="GET"){
+        try{
+            let docs=await Employee.find()
+            res.status(200).json({message:"success",employees:docs})
+        }catch(error){
+            console.log(error)
+            res.status(501).json({message:"error"})
+        }
+        res.status(200).json({message:"hey"})
+    
     }
-    res.status(200).json({message:"hey"})
 }
