@@ -10,6 +10,7 @@ export default function employee(){
     const [managerid,setManagerid]=useState()
     const [employees,setEmployees]=useState([])
     const [departments,setDepartments]=useState([])
+    const [loading,setLoading]=useState(true)
     //state to show popup for edit
     const [open,setOpen]=useState(false)
 
@@ -25,6 +26,7 @@ export default function employee(){
         let response=await axios.get("/api/department/getDepartment")
         if(response.data.message==="success"){
             setDepartments(response.data.department)
+            setLoading(false)
         }
         
     }
@@ -94,26 +96,28 @@ export default function employee(){
                     <div className=" font-bold text-2xl">
                     DEPARTMENTS
                     </div>
+                        {loading?<div className=" font-bold text-2xl">loading .... </div> : 
+                                            departments.map((department)=>{
+                                                return(
+                                                    <div className="flex justify-evenly employeesubcontainer items-center rounded p-4" key={department._id}>
+                                                            <div className="flex-1 p-2">
+                                                                {department.DepartmentName}
+                                                            </div>
+                                                            <div className="flex-1 p-2">
+                                                                {department.Location}
+                                                            </div>
+                                                            <div className="flex-1 p-2">
+                                                                {department.ManagerId}
+                                                            </div>
+                                                            <button id={department._id } className="flex-1 font-bold" onClick={deleteHandler} >DELETE</button>
+                                                            <button id={department._id } className="flex-1 font-bold" onClick={editHandler}  >EDIT</button>
+                        
+                                                    </div>
+                        
+                                                )
+                                            })
+                        }
 
-                    {departments.map((department)=>{
-                        return(
-                            <div className="flex justify-evenly employeesubcontainer items-center rounded p-4" key={department._id}>
-                                    <div className="flex-1 p-2">
-                                        {department.DepartmentName}
-                                    </div>
-                                    <div className="flex-1 p-2">
-                                        {department.Location}
-                                    </div>
-                                    <div className="flex-1 p-2">
-                                        {department.ManagerId}
-                                    </div>
-                                    <button id={department._id } className="flex-1 font-bold" onClick={deleteHandler} >DELETE</button>
-                                    <button id={department._id } className="flex-1 font-bold" onClick={editHandler}  >EDIT</button>
-
-                            </div>
-
-                        )
-                    })}
                 </div>
             </div>
 

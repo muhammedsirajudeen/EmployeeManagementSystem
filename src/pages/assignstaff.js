@@ -7,10 +7,12 @@ export default function Assignstaff(){
     const [employees,setEmployees]=useState([])
     const [open,setOpen]=useState(false)
     const [id,setId]=useState("")
+    const [loading,setLoading]=useState(true)
     async function getEmployee(){
         let response=await axios.get("/api/employee/getEmployee")
         if(response.data.message==="success"){
             setEmployees(response.data.employees)
+            setLoading(false)
         }
     }
     useEffect(()=>{
@@ -25,39 +27,42 @@ export default function Assignstaff(){
     return(
         <div className="flex flex-col items-center justify-evenly w-screens">
             <Navbar/>
-            {employees.map((employee)=>{
-                return(
-                    <div className={`flex border h-10 min-w-full border-white text-white m-10   items-center ${open?"blur":""} `} key={employee._id}>
-                                    <div className="flex-1 p-2">
-                                        {employee.EmployeeName}
+            {loading ? <div className=" font-bold text-2xl">loading....</div>:
+                            employees.map((employee)=>{
+                                return(
+                                    <div className={`flex border h-10 min-w-full border-white text-white m-10   items-center ${open?"blur":""} `} key={employee._id}>
+                                                    <div className="flex-1 p-2">
+                                                        {employee.EmployeeName}
+                                                    </div>
+                                                    <div className="flex-1 p-2">
+                                                        {employee.EmployeeEmail}
+                                                    </div>
+                                                    <div className="flex-1 p-2">
+                                                        {employee.EmployeeContact}
+                                                    </div>
+                                                    <div className="flex-1 p-2">
+                                                        {employee.DateOfJoining.slice(0, 10)}
+                                                    </div>
+                                                    <div className="flex-1 p-2">
+                                                        {employee.Experience}
+                                                    </div>
+                                                    <div className="flex-1 p-2">
+                                                        {employee.Department}
+                                                    </div>
+                                                    <div className="flex-1 p-2">
+                                                        {employee.Location}
+                                                    </div>
+                
+                
+                                                    <button id={employee._id} className="border border-white mr-10 h-5 " onClick={assignHandler}  >ASSIGN</button>
+                
+                
                                     </div>
-                                    <div className="flex-1 p-2">
-                                        {employee.EmployeeEmail}
-                                    </div>
-                                    <div className="flex-1 p-2">
-                                        {employee.EmployeeContact}
-                                    </div>
-                                    <div className="flex-1 p-2">
-                                        {employee.DateOfJoining.slice(0, 10)}
-                                    </div>
-                                    <div className="flex-1 p-2">
-                                        {employee.Experience}
-                                    </div>
-                                    <div className="flex-1 p-2">
-                                        {employee.Department}
-                                    </div>
-                                    <div className="flex-1 p-2">
-                                        {employee.Location}
-                                    </div>
-
-
-                                    <button id={employee._id} className="border border-white mr-10 h-5 " onClick={assignHandler}  >ASSIGN</button>
-
-
-                    </div>
-
-                )
-            })}
+                
+                                )
+                            })
+                
+            }
 
         {open?    <Editmenuassign setOpen={setOpen} setEmployees={setEmployees} id={id} />         :<div></div>  }
         </div>

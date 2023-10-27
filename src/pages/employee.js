@@ -10,7 +10,7 @@ export default function employee(){
     const [date,setDate]=useState("")
     const [experience,setExperice]=useState(0)
     const [employees,setEmployees]=useState([])
-
+    const [loading,setLoading]=useState(true)
     //state to show popup for edit
     const [open,setOpen]=useState(false)
 
@@ -20,6 +20,7 @@ export default function employee(){
         let response=await axios.get("/api/employee/getEmployee")
         if(response.data.message==="success"){
             setEmployees(response.data.employees)
+            setLoading(false)
         }
     }
     useEffect(()=>{
@@ -74,6 +75,7 @@ export default function employee(){
         <div className="flex flex-col justify-start items-center" >
             <Navbar/>
 
+
             <div className={`flex justify-evenly items-center w-screen mt-20 ${open? "blur" : "" } `}>
                 <div className="flex flex-col justify-evenly items-center border border-white w-96 text-black ">
                     <div className=" font-bold text-2xl">ADD EMPLOYEES</div>
@@ -90,32 +92,34 @@ export default function employee(){
                     <div className=" font-bold text-2xl">
                     EMPLOYEES
                     </div>
+                    {loading?<div className=" font-bold text-2xl" >loading....</div> :
+                                        employees.map((employee)=>{
+                                            return(
+                                                <div className="flex justify-evenly employeesubcontainer items-center rounded p-4" key={employee._id}>
+                                                        <div className="flex-1 p-2">
+                                                            {employee.EmployeeName}
+                                                        </div>
+                                                        <div className="flex-1 p-2">
+                                                            {employee.EmployeeEmail}
+                                                        </div>
+                                                        <div className="flex-1 p-2">
+                                                            {employee.EmployeeContact}
+                                                        </div>
+                                                        <div className="flex-1 p-2">
+                                                            {employee.DateOfJoining.slice(0, 10)}
+                                                        </div>
+                                                        <div className="flex-1 p-2">
+                                                            {employee.Experience}
+                                                        </div>
+                                                        <button id={employee._id } className="flex-1 font-bold" onClick={deleteHandler} >DELETE</button>
+                                                        <button id={employee._id } className="flex-1 font-bold" onClick={editHandler}  >EDIT</button>
+                    
+                                                </div>
+                    
+                                            )
+                                        })
+                    }
 
-                    {employees.map((employee)=>{
-                        return(
-                            <div className="flex justify-evenly employeesubcontainer items-center rounded p-4" key={employee._id}>
-                                    <div className="flex-1 p-2">
-                                        {employee.EmployeeName}
-                                    </div>
-                                    <div className="flex-1 p-2">
-                                        {employee.EmployeeEmail}
-                                    </div>
-                                    <div className="flex-1 p-2">
-                                        {employee.EmployeeContact}
-                                    </div>
-                                    <div className="flex-1 p-2">
-                                        {employee.DateOfJoining.slice(0, 10)}
-                                    </div>
-                                    <div className="flex-1 p-2">
-                                        {employee.Experience}
-                                    </div>
-                                    <button id={employee._id } className="flex-1 font-bold" onClick={deleteHandler} >DELETE</button>
-                                    <button id={employee._id } className="flex-1 font-bold" onClick={editHandler}  >EDIT</button>
-
-                            </div>
-
-                        )
-                    })}
                 </div>
             </div>
 
