@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
-export default function Editmenuassign({setOpen,id}){
+export default function Editmenuassign({setOpen,id,setEmployees}){
     const [departments,setDepartments]=useState([])
     const [employee,setEmployee]=useState()
     const [department,setDepartment]=useState("")
@@ -9,6 +9,12 @@ export default function Editmenuassign({setOpen,id}){
         let response=await axios.get("/api/department/getDepartment")
         if(response.data.message==="success"){
             setDepartments(response.data.department)
+        }
+    }
+    async function getEmployee(){
+        let response=await axios.get("/api/employee/getEmployee")
+        if(response.data.message==="success"){
+            setEmployees(response.data.employees)
         }
     }
     async function getEmployeeById(){
@@ -40,6 +46,8 @@ export default function Editmenuassign({setOpen,id}){
             alert("assigned successfully")
             setDepartment(document.querySelector("#department__select").value)
             setLocation(document.querySelector("#location__select").value)
+            getEmployee()
+            
         }else{
             alert("re assign")
         }

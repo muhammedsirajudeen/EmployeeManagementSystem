@@ -59,7 +59,7 @@ export default function Assignstaff(){
                 )
             })}
 
-        {open?    <Editmenuassign setOpen={setOpen} id={id} />         :<div></div>  }
+        {open?    <Editmenuassign setOpen={setOpen} setEmployees={setEmployees} id={id} />         :<div></div>  }
         </div>
     )
 }
