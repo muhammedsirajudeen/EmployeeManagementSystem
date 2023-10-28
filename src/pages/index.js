@@ -9,6 +9,7 @@ export default function Home() {
     async function coldstartRemedy(){
       let response=await axios.get("/api/hello")
     }
+    coldstartRemedy()
   })
   return (
       <div className=' w-screen h-screen flex flex-col items-center justify-start'>
