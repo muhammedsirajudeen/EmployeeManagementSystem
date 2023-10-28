@@ -2,7 +2,14 @@ import Image from 'next/image'
 import { Inter } from 'next/font/google'
 
 import Navbar from '@/components/navbar'
+import { useEffect } from 'react'
+import axios from 'axios'
 export default function Home() {
+  useEffect(()=>{
+    async function coldstartRemedy(){
+      let response=await axios.get("/api/hello")
+    }
+  })
   return (
       <div className=' w-screen h-screen flex flex-col items-center justify-start'>
         <Navbar/>
