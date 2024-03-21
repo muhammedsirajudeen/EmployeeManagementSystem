@@ -1,40 +1,22 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
+import Navbar from "@/components/navbar";
+import { useState } from "react";
+import styles from  "@/styles/background.module.css"
 
-import Navbar from '@/components/navbar'
-import { useEffect } from 'react'
-import axios from 'axios'
-export default function Home() {
-  useEffect(()=>{
-    async function coldstartRemedy(){
-      let response=await axios.get("/api/hello")
+export default function Indexname(){
+    const [name,setName]=useState("")
+    function companyName(){
+        window.localStorage.setItem('name',name)
+        window.location.href="/signin"
     }
-    coldstartRemedy()
-  })
-  return (
-      <div className=' w-screen h-screen flex flex-col items-center justify-start'>
-        <Navbar/>
+    return(
+        <div className={`${styles.maincontainer} bg-gray-500 h-screen flex flex-col w-full items-center justify-start`}>
+            <Navbar/>
 
-        <div className='flex flex-col items-center justify-evenly  h-screen'>
-            <div className=' font-bold text-3xl '>We at EMS provide the best Employee Management Service available.</div>
-            <div className='font-bold text-2xl '>OUR SERVICES</div>
-            <div className='flex items-center justify-evenly w-screen'>
-
-              <div className='flex items-center justify-center flex-col font-bold border border-white w-40 h-40'>
-                MANAGE EMPLOYEE
-              </div>
-              <div className='flex items-center justify-center flex-col font-bold border border-white w-40 h-40'>
-                MANAGE DEPARTMENT
-              </div>
-              <div className='flex items-center justify-center flex-col border font-bold border-white w-40 h-40'>
-                HANDLE PROMOTIONS
-              </div>
-              <div className='flex flex-col items-center justify-center border font-bold border-white w-40 h-40'>
-                ASSIGN EMPLOYEE
-              </div>
-
+            <h1 className="text-white font-bold mt-10" >MANAGE YOUR EMPLOYEES USING EMS</h1>
+            <div className="flex flex-col items-center justify-center bg-white w-96 rounded-lg  ">
+                <input type="text" className="bg-gray-500 m-5 rounded-sm" onChange={(e)=>setName(e.target.value)}   placeholder="enter company name"></input> 
+                <button className="p-1 border border-black rounded-lg" onClick={companyName}>submit</button>
             </div>
         </div>
-      </div>
-  )
+    )
 }

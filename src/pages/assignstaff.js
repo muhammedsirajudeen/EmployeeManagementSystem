@@ -2,6 +2,8 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 import Navbar from "@/components/navbar"
 import Editmenuassign from "@/components/Editmenuassign"
+import styles from "@/styles/signin.module.css"
+
 export default function Assignstaff(){
 
     const [employees,setEmployees]=useState([])
@@ -10,6 +12,7 @@ export default function Assignstaff(){
     const [loading,setLoading]=useState(true)
     async function getEmployee(){
         let response=await axios.get("/api/employee/getEmployee")
+        console.log(response)
         if(response.data.message==="success"){
             setEmployees(response.data.employees)
             setLoading(false)
@@ -25,31 +28,32 @@ export default function Assignstaff(){
 
     }
     return(
-        <div className="flex flex-col items-center justify-evenly w-screens">
+        <div className={`flex flex-col justify-start items-center ${styles.employeecontainer} bg-boxcolor overflow-x-hidden `} >
             <Navbar/>
+            <h1 className="text-black font-bold mt-10 ">ASSIGN STAFF TO DEPARTMENTS</h1>
             {loading ? <div className=" font-bold text-2xl">loading....</div>:
                             employees.map((employee)=>{
                                 return(
-                                    <div className={`flex border h-10 min-w-full border-white text-white m-10   items-center ${open?"blur":""} `} key={employee._id}>
-                                                    <div className="flex-1 p-2">
+                                    <div className={`${styles.employeesubcontainer} flex border h-10  border-white text-white  m-10  bg-boxcolor  items-center ${open?"blur":""} `} key={employee._id}>
+                                                    <div className="border border-white flex-1  p-2">
                                                         {employee.EmployeeName}
                                                     </div>
-                                                    <div className="flex-1 p-2">
+                                                    <div className="flex-1 border p-2">
                                                         {employee.EmployeeEmail}
                                                     </div>
-                                                    <div className="flex-1 p-2">
+                                                    <div className="flex-1 border p-2">
                                                         {employee.EmployeeContact}
                                                     </div>
-                                                    <div className="flex-1 p-2">
+                                                    <div className="flex-1 border p-2">
                                                         {employee.DateOfJoining.slice(0, 10)}
                                                     </div>
-                                                    <div className="flex-1 p-2">
+                                                    <div className="flex-1 border p-2">
                                                         {employee.Experience}
                                                     </div>
-                                                    <div className="flex-1 p-2">
+                                                    <div className="flex-1 border p-2">
                                                         {employee.Department}
                                                     </div>
-                                                    <div className="flex-1 p-2">
+                                                    <div className="flex-1 border p-2">
                                                         {employee.Location}
                                                     </div>
                 

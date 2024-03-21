@@ -1,13 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-body{
-  background-color: black;
-  color: white;
-   /* Adjust the blur amount as needed */
 
-
-}
 .employee-main-container{
   width: 60%;
 }

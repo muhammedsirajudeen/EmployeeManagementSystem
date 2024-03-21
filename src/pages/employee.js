@@ -2,6 +2,8 @@
 import Navbar from "@/components/navbar"
 import axios from "axios"
 import { useEffect, useState } from "react"
+import styles from "@/styles/signin.module.css"
+
 import Editmenuemployee from "@/components/Editmenuemployee"
 export default function employee(){
     const [name,setName]=useState("")
@@ -72,13 +74,13 @@ export default function employee(){
     }
 
     return(
-        <div className="flex flex-col justify-start items-center" >
+        <div className={`flex flex-col justify-start items-center ${styles.employeecontainer} bg-boxcolor overflow-x-hidden `} >
             <Navbar/>
 
 
-            <div className={`flex justify-evenly items-center w-screen mt-20 ${open? "blur" : "" } `}>
-                <div className="flex flex-col justify-evenly items-center border border-white w-96 text-black ">
-                    <div className=" font-bold text-2xl">ADD EMPLOYEES</div>
+            <div className={`flex flex-col justify-evenly items-center text-white w-screen mt-20 ${open? "blur" : "" } `}>
+                <div className="flex flex-col justify-evenly items-center  bg-boxcolor  w-96 text-black ">
+                    <div className=" font-bold text-2xl text-white ">ADD EMPLOYEES</div>
                     <input type="text" placeholder="employee name" className="m-5"  value={name} onChange={(e)=>setName(e.target.value)} ></input>
                     <input type="email" placeholder="employee email" className="m-5" value={email} onChange={(e)=>setEmail(e.target.value)}  ></input>
                     <input type="number" placeholder="employee contact" className="m-5"  value={contact} onChange={(e)=> setContact(e.target.value)} ></input>
@@ -87,7 +89,7 @@ export default function employee(){
                     <input type="number" placeholder="employee experience" className="m-5" value={experience} onChange={(e)=>setExperice(e.target.value)} ></input>
                     <button className="border border-white font-bold w-16 m-5   text-white " onClick={addHandler} >ADD</button>
                 </div>
-                <div className="flex flex-col justify-evenly items-center border border-white employee-main-container">
+                <div className="flex flex-col bg-boxcolor mt-10 text-white justify-evenly items-center border border-white employee-main-container">
 
                     <div className=" font-bold text-2xl">
                     EMPLOYEES

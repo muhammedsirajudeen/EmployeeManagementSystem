@@ -1,0 +1,11 @@
+.maincontainer{
+    background-image: url('/corporate1.jpg');
+    background-size: cover; /* Adjusts the size of the background image */
+    background-repeat: no-repeat; 
+}
+.maincontainerone{
+    background-image: url('/corporate1.jpg');
+    background-size: cover; /* Adjusts the size of the background image */
+    background-repeat: no-repeat; 
+
+}

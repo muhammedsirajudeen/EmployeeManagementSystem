@@ -7,6 +7,11 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors:{
+        navbarcolor:"#151925",
+        greycolor:"#D9D9D938",
+        boxcolor:"#151925"
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':

@@ -1,6 +1,8 @@
 import Navbar from "@/components/navbar";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import styles from "@/styles/signin.module.css"
+
 import Editmenupromote from "@/components/Editmenupromote";
 export default function Promotions(){
     const [employees,setEmployees]=useState([])
@@ -22,32 +24,33 @@ export default function Promotions(){
         open ? setOpen(false) :setOpen(true)
     }
     return (
-        <div className="flex flex-col justify-center items-center w-screen" >
+        <div className={`flex flex-col justify-start items-center ${styles.employeecontainer} bg-boxcolor overflow-x-hidden `} >
             <Navbar/>
+            <h1 className="font font-bold mt-10" >PROMOTE EMPLOYEES</h1>
             {loading ? <div className=" font-bold text-2xl">loading ....</div> : 
                         employees.map((employee)=>{
                             if(employee.Experience>=5){
                                 return(
-                                    <div className={`flex border h-10 min-w-full border-white text-white m-10   items-center ${open?"blur":""}  `} key={employee._id}>
-                                    <div className="flex-1 p-2">
+                                    <div className={` ${styles.employeesubcontainer} flex border h-10  bg-boxcolor border-white text-white m-10   items-center ${open?"blur":""}  `} key={employee._id}>
+                                    <div className="flex-1 border p-2">
                                         {employee.EmployeeName}
                                     </div>
-                                    <div className="flex-1 p-2">
+                                    <div className="flex-1 border p-2">
                                         {employee.EmployeeEmail}
                                     </div>
-                                    <div className="flex-1 p-2">
+                                    <div className="flex-1 border p-2">
                                         {employee.EmployeeContact}
                                     </div>
-                                    <div className="flex-1 p-2">
+                                    <div className="flex-1 border p-2">
                                         {employee.DateOfJoining.slice(0, 10)}
                                     </div>
-                                    <div className="flex-1 p-2">
+                                    <div className="flex-1 border p-2">
                                         {employee.Experience}
                                     </div>
-                                    <div className="flex-1 p-2">
+                                    <div className="flex-1 border p-2">
                                         {employee.Department}
                                     </div>
-                                    <div className="flex-1 p-2">
+                                    <div className="flex-1 border p-2">
                                         {employee.Location}
                                     </div>
             

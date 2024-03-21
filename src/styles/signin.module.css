@@ -1,0 +1,27 @@
+.maincontainer{
+    background-image: url('/corporate.png');
+    background-size: cover; /* Adjusts the size of the background image */
+    background-repeat: no-repeat; 
+    height: 100px;
+}
+.maincontainerone{
+    background-image: url('/corporatebg.jpg');
+    background-size: cover; /* Adjusts the size of the background image */
+    background-repeat: no-repeat; 
+    height: 600px;
+    width: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+}
+.employeecontainer{
+    background-image: url('/corporate2.jpg');
+    background-size: cover; /* Adjusts the size of the background image */
+    background-repeat: no-repeat; 
+    height: 100vh;
+}
+.employeesubcontainer{
+    width: 700px;
+
+}

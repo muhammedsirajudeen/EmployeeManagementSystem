@@ -4,6 +4,8 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 //need to add department edit menu here
 import Editmenudepartment from "@/components/Editmenudepartment"
+import styles from "@/styles/signin.module.css"
+
 export default function employee(){
     const [name,setName]=useState("")
     const [location,setLocation]=useState("")
@@ -72,12 +74,12 @@ export default function employee(){
     }
 
     return(
-        <div className="flex flex-col justify-start items-center" >
+        <div className={`flex flex-col justify-start items-center ${styles.employeecontainer} bg-boxcolor overflow-x-hidden `} >
             <Navbar/>
 
-            <div className={`flex justify-evenly items-center w-screen mt-20 ${open? "blur" : "" } `}>
-                <div className="flex flex-col justify-evenly items-center border border-white w-96 text-black ">
-                    <div className=" font-bold text-2xl">ADD DEPARTMENT</div>
+            <div className={`flex flex-col justify-evenly items-center w-screen mt-20 ${open? "blur" : "" } `}>
+                <div className="flex bg-boxcolor flex-col justify-evenly items-center border border-white w-96 text-black ">
+                    <div className=" font-bold text-2xl text-white ">ADD DEPARTMENT</div>
                     <input type="text" placeholder="department name" className="m-5"  value={name} onChange={(e)=>setName(e.target.value)} ></input>
                     <input type="email" placeholder="department location" className="m-5" value={location} onChange={(e)=>setLocation(e.target.value)}  ></input>
                     <p className=" font-bold text-white mb-1" >select manager</p>
@@ -91,7 +93,7 @@ export default function employee(){
 
                     <button className="border border-white font-bold w-16 m-5   text-white " onClick={addHandler} >ADD</button>
                 </div>
-                <div className="flex flex-col justify-evenly items-center border border-white employee-main-container">
+                <div className="flex mt-10 flex-col justify-evenly items-center  border-white employee-main-container bg-boxcolor text-white ">
 
                     <div className=" font-bold text-2xl">
                     DEPARTMENTS
